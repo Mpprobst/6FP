@@ -7,6 +7,9 @@ public class iOSController : PlayerController
     private int width;
     private int height;
     private Vector2 swipeStart;
+    private float swipeStartTime;
+    private float maxSwipeTime = 0.5f;
+    private bool swipe;
 
     // Start is called before the first frame update
     protected override void Start()
@@ -27,50 +30,71 @@ public class iOSController : PlayerController
         if (Input.touchCount > 0)
         {
             Touch touch = Input.GetTouch(0);
+            Touch swipeTouch = touch;
 
-            if (touch.phase == TouchPhase.Began)
+            if (inputVal != 0 && Input.touchCount == 2)
             {
-                swipeStart = touch.position;
+                swipeTouch = Input.GetTouch(1);
             }
 
-            if (touch.phase == TouchPhase.Ended)
+            if (swipeTouch.phase == TouchPhase.Began)
             {
-                Vector2 swipeEnd = touch.position;
-                Vector2 diff = swipeEnd - swipeStart;
-                Vector2 face = new Vector2(transform.forward.x, transform.forward.z);
-                float swipeAngle = Vector2.Angle(face, diff);
-                Debug.Log("swipe angle = " + swipeAngle);
-                Debug.Log("diff = " + diff + " playerPos = " + face);
+                swipeStart = swipeTouch.position;
+                swipeStartTime = Time.time;
+            }
 
-                if (swipeAngle < 20f)
+
+            if (swipeTouch.phase == TouchPhase.Ended && (Time.time - swipeStartTime < maxSwipeTime))
+            { 
+                Vector2 swipeEnd = swipeTouch.position;
+                Vector2 diff = swipeEnd - swipeStart;
+                if (diff.magnitude > 200)
                 {
-                    Poke();
+                    Vector2 face = new Vector2(transform.forward.x, transform.forward.z);
+                    float swipeAngle = Vector2.Angle(face, diff);
+                    Debug.Log("swipe angle = " + swipeAngle);
+                    Debug.Log("diff = " + diff + " playerPos = " + face);
+
+                    if (swipeAngle < 45f)
+                    {
+                        Poke();
+                    }
+                    else
+                    {
+                        Debug.Log("diff x face = " + diff.x * face.x);
+                        if (diff.x * face.x < 0)
+                        {
+                            rotateCW = true;
+                        }
+                        else
+                        {
+                            rotateCW = false;
+                        }
+
+                        Swipe();
+                    }
+                }
+            }
+
+            if (true)
+            {
+                if (touch.position.x < (float)width / 2.0f)
+                {
+                    inputVal = -1;
                 }
                 else
                 {
-                    Swipe();
+                    inputVal = 1;
                 }
 
-            }
+                Rotate();
 
-            if (Input.touchCount == 2)
-            {
-                Poke();
             }
-
-            if (touch.position.x < (float)width/2.0f)
-            {
-                inputVal = -1;
-            }
-            else
-            {
-                inputVal = 1;
-            }
-
-            Rotate();
-
         }
-
+        else
+        {
+            inputVal = 0;
+        }
 
     }
 }

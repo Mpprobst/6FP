@@ -24,7 +24,7 @@ public class PlayerController : MonoBehaviour
     private bool animating;
     public float coughCooldown = 10f;
     [System.NonSerialized] public float timeSinceLastCough;
-    private bool rotateCW;
+    protected bool rotateCW;
     protected float lastAngle;
     public bool dead;
     public UnityEvent hurtEvent;
