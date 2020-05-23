@@ -197,8 +197,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28d246f1b6752c24e93570757e17316c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hp: 3
-  maxHP: 3
+  hp: 1
+  maxHP: 1
   alive: 0
   hurtEvent:
     m_PersistentCalls:

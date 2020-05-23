@@ -24,12 +24,15 @@ public class PlayerController : MonoBehaviour
     private bool animating;
     public float coughCooldown = 10f;
     [System.NonSerialized] public float timeSinceLastCough;
-    protected bool rotateCW;
+    [System.NonSerialized] public bool rotateCW;
     protected float lastAngle;
     public bool dead;
     public UnityEvent hurtEvent;
     protected bool usingMouse;
-    protected float inputVal;
+    [System.NonSerialized] public float inputVal;
+    //[System.NonSerialized]
+    public bool tutOverride = false;
+
 
     // Start is called before the first frame update
     protected virtual void Start()
@@ -96,7 +99,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    protected virtual void Swipe()
+    public virtual void Swipe()
     {
         speaker.clip = swipeSound;
         speaker.Play();
@@ -108,7 +111,7 @@ public class PlayerController : MonoBehaviour
             animator.SetTrigger("SwipeCCW");
     }
 
-    protected virtual void Poke()
+    public virtual void Poke()
     {
         speaker.clip = pokeSound;
         speaker.Play();
@@ -133,8 +136,9 @@ public class PlayerController : MonoBehaviour
         lastAngle = transform.localEulerAngles.y;
     }
 
-    protected virtual void Rotate()
+    public virtual void Rotate()
     {
+        Debug.Log("input = " + inputVal);
         usingMouse = false;
         //inputVal = Input.GetAxis("Horizontal");
         if (inputVal > 0) rotateCW = true;
@@ -145,6 +149,8 @@ public class PlayerController : MonoBehaviour
 
     public virtual void Hurt()
     {
+        Debug.Log("player hurt");
+        timeSinceLastCough = 0;
         hurtEvent.Invoke();
         Cough();
     }

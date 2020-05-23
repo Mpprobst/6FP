@@ -105,8 +105,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28d246f1b6752c24e93570757e17316c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hp: 3
-  maxHP: 3
+  hp: 1
+  maxHP: 1
   alive: 0
   hurtEvent:
     m_PersistentCalls:
@@ -465,6 +465,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2787994549091081514, guid: 6692a67e9352a1e4e9393c2cbdc27f29,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.3711779
+      objectReference: {fileID: 0}
+    - target: {fileID: 2787994549091081514, guid: 6692a67e9352a1e4e9393c2cbdc27f29,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.027741602
       objectReference: {fileID: 0}
     - target: {fileID: 8603728636936474020, guid: 6692a67e9352a1e4e9393c2cbdc27f29,
         type: 3}

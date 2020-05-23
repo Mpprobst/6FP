@@ -29,20 +29,23 @@ public class Movement : MonoBehaviour
 
     private void MoveToGoal()
     {
-        Vector3 dir = target.transform.position - transform.position;
-        float dist = Vector3.Distance(transform.position, target.transform.position);
+        if (target != null)
+        {
+            Vector3 dir = target.transform.position - transform.position;
+            float dist = Vector3.Distance(transform.position, target.transform.position);
 
-        if (dist > 0.1f)
-        {
-            //transform.position = (Vector3.MoveTowards(transform.position, target.transform.position, speed * Time.deltaTime);
-            rb.MovePosition(Vector3.MoveTowards(transform.position, target.transform.position, speed * Time.deltaTime));
-            Quaternion targetRot = Quaternion.LookRotation(target.transform.position - transform.position);
-            rb.MoveRotation(targetRot);
-            goalMet = false;
-        }
-        else
-        {
-            goalMet = true;
+            if (dist > 0.1f)
+            {
+                //transform.position = (Vector3.MoveTowards(transform.position, target.transform.position, speed * Time.deltaTime);
+                rb.MovePosition(Vector3.MoveTowards(transform.position, target.transform.position, speed * Time.deltaTime));
+                Quaternion targetRot = Quaternion.LookRotation(target.transform.position - transform.position);
+                rb.MoveRotation(targetRot);
+                goalMet = false;
+            }
+            else
+            {
+                goalMet = true;
+            }
         }
     }
 

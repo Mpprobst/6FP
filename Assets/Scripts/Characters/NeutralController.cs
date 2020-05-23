@@ -25,10 +25,15 @@ public class NeutralController : EnemyController
         health = GetComponent<Health>();
         health.hurtEvent = new UnityEvent();
         health.hurtEvent.AddListener(TakeDamage);
-        health.hp = 3;
         animator = GetComponent<Animator>();
         speaker = GetComponent<AudioSource>();
         timeSinceLastGoal = Time.time;
+
+        if (idle)
+        {
+            Debug.Log("play idle anim");
+            animator.SetBool("Idle", true);
+        }
 
     }
 
@@ -50,18 +55,21 @@ public class NeutralController : EnemyController
 
     public void ChangeGoal(int fromDirection)
     {
-        int otherDirection = 0;
-        if (fromDirection == 0)
-            otherDirection = 1;
-        else if (fromDirection == 2)
-            otherDirection = 3;
-        else if (fromDirection == 3)
-            otherDirection = 2;
+        if (goals.Count > 0)
+        {
+            int otherDirection = 0;
+            if (fromDirection == 0)
+                otherDirection = 1;
+            else if (fromDirection == 2)
+                otherDirection = 3;
+            else if (fromDirection == 3)
+                otherDirection = 2;
 
-        goal = goals[otherDirection][Random.Range(0, goals[fromDirection].Length)];
-        currDirection = otherDirection;
-        movement.SetTarget(goal);
-        timeSinceLastGoal = Time.time;
+            goal = goals[otherDirection][Random.Range(0, goals[fromDirection].Length)];
+            currDirection = otherDirection;
+            movement.SetTarget(goal);
+            timeSinceLastGoal = Time.time;
+        }
     }
 
     protected override void TakeDamage()

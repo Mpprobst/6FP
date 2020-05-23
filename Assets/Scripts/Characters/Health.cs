@@ -5,8 +5,8 @@ using UnityEngine.Events;
 
 public class Health : MonoBehaviour
 {
-    public int hp = 1;
-    public int maxHP = 3;
+    public int hp;
+    public int maxHP;
     public bool alive;
     private float invincibilityTime = 1.5f;
     private float timeSinceLastHit;
@@ -23,7 +23,7 @@ public class Health : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (hp <= 0)
+        if (hp < 0)
         {
             alive = false;
         }
@@ -35,7 +35,7 @@ public class Health : MonoBehaviour
         {
             hp--;
             timeSinceLastHit = Time.time;
-            if (hp > 0)
+            if (hp >= 0)
                 hurtEvent.Invoke();
         }
     }

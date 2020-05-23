@@ -27,8 +27,9 @@ public class iOSController : PlayerController
 
     protected override void HandleInput()
     {
-        if (Input.touchCount > 0)
+        if (Input.touchCount > 0 )
         {
+            swipe = false;
             Touch touch = Input.GetTouch(0);
             Touch swipeTouch = touch;
 
@@ -45,11 +46,12 @@ public class iOSController : PlayerController
 
 
             if (swipeTouch.phase == TouchPhase.Ended && (Time.time - swipeStartTime < maxSwipeTime))
-            { 
+            {
                 Vector2 swipeEnd = swipeTouch.position;
                 Vector2 diff = swipeEnd - swipeStart;
                 if (diff.magnitude > 200)
                 {
+                    swipe = true;
                     Vector2 face = new Vector2(transform.forward.x, transform.forward.z);
                     float swipeAngle = Vector2.Angle(face, diff);
                     Debug.Log("swipe angle = " + swipeAngle);
@@ -76,7 +78,7 @@ public class iOSController : PlayerController
                 }
             }
 
-            if (true)
+            if (!swipe)
             {
                 if (touch.position.x < (float)width / 2.0f)
                 {
@@ -91,8 +93,9 @@ public class iOSController : PlayerController
 
             }
         }
-        else
+        else if (!tutOverride)
         {
+            Debug.Log("making input 0");
             inputVal = 0;
         }
 

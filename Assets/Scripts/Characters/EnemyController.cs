@@ -13,6 +13,7 @@ public class EnemyController : MonoBehaviour
     protected AudioSource speaker;
     public AudioClip[] hurtSounds;
     public AudioClip[] deathSounds;
+    public bool idle = false;
 
     [System.NonSerialized] public int ID;
     public EnemyEvent destroyedEvent;
@@ -31,10 +32,15 @@ public class EnemyController : MonoBehaviour
         health = GetComponent<Health>();
         health.hurtEvent = new UnityEvent();
         health.hurtEvent.AddListener(TakeDamage);
-        health.hp = 3;
         movement = GetComponent<Movement>();
         animator = GetComponent<Animator>();
         speaker = GetComponent<AudioSource>();
+
+        if (idle)
+        {
+            Debug.Log("play idle anim");
+            animator.SetBool("Idle", true);
+        }
 
         if (!goal)
         {
@@ -67,7 +73,8 @@ public class EnemyController : MonoBehaviour
         AudioClip randClip = deathSounds[Random.Range(0, hurtSounds.Length-1)];
         speaker.clip = randClip;
         speaker.Play();
-        destroyedEvent.Invoke(ID);
+        if (destroyedEvent != null)
+            destroyedEvent.Invoke(ID);
         GameObject popup =  (GameObject)Instantiate(pointPopupPrefab);
         popup.GetComponent<PointPopup>().Initialized(points);
         animator.SetBool("Dead", true);
@@ -93,6 +100,14 @@ public class EnemyController : MonoBehaviour
 
     protected virtual void DelayDestroy()
     {
+        if (destroyedEvent != null)
+            destroyedEvent.Invoke(ID);
         Destroy(gameObject);
+    }
+
+    private void OnDestroy()
+    {
+        Debug.Log("destroy ID " + ID);
+        //destroyedEvent.Invoke(ID);
     }
 }

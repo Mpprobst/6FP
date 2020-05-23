@@ -25,9 +25,9 @@ public class SpawnManager : MonoBehaviour
     {
         if (Time.time - timeSinceLastIncrease > timeToIncrease && spawning)
         {
-            spawner.maxAlive++;
+            spawner.maxAlive = 3 + difficulty / 3;
 
-            spawner.spawnFrequency -= difficulty / 100;
+            spawner.spawnFrequency -= difficulty / 50;
             if (spawner.spawnFrequency < 0.5f) spawner.spawnFrequency = 0.5f; 
 
             difficulty++;
@@ -36,7 +36,7 @@ public class SpawnManager : MonoBehaviour
             {
                 difficulty = 100;
             }
-            spawner.maxEnemySpeed = 1 + (float)difficulty / 20;
+            spawner.maxEnemySpeed = 0.75f + (float)difficulty / 30.0f;
             timeSinceLastIncrease = Time.time;
         }
     }
