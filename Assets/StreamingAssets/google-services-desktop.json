@@ -1,0 +1,37 @@
+{
+  "project_info": {
+    "project_number": "824635688634",
+    "firebase_url": "https://foot-pole.firebaseio.com",
+    "project_id": "foot-pole",
+    "storage_bucket": "foot-pole.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:824635688634:ios:aaa3d6d3b05aefe2096483",
+        "android_client_info": {
+          "package_name": "com.MeatyOkraGames.6FootPole"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "824635688634-brs7ej0ahslbjufalbgt8hqh2842ctpl.apps.googleusercontent.com"
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDpWNJi4bxzLaCQe2_OT6V5WUAYZ05LACM"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 0
+        },
+        "appinvite_service": {
+          "status": 1
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

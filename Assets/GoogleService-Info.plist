@@ -3,9 +3,9 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>824635688634-gi892cqb7vihllnrhgrs7pj1u1eo602b.apps.googleusercontent.com</string>
+	<string>824635688634-brs7ej0ahslbjufalbgt8hqh2842ctpl.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.824635688634-gi892cqb7vihllnrhgrs7pj1u1eo602b</string>
+	<string>com.googleusercontent.apps.824635688634-brs7ej0ahslbjufalbgt8hqh2842ctpl</string>
 	<key>API_KEY</key>
 	<string>AIzaSyDpWNJi4bxzLaCQe2_OT6V5WUAYZ05LACM</string>
 	<key>GCM_SENDER_ID</key>
@@ -13,7 +13,7 @@
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.meatyokragames.6-foot-pole</string>
+	<string>com.MeatyOkraGames.6FootPole</string>
 	<key>PROJECT_ID</key>
 	<string>foot-pole</string>
 	<key>STORAGE_BUCKET</key>
@@ -29,7 +29,7 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:824635688634:ios:5df3fd6d05d7251c096483</string>
+	<string>1:824635688634:ios:aaa3d6d3b05aefe2096483</string>
 	<key>DATABASE_URL</key>
 	<string>https://foot-pole.firebaseio.com</string>
 </dict>
