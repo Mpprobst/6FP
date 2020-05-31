@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "824635688634",
+    "firebase_url": "https://foot-pole.firebaseio.com",
+    "project_id": "foot-pole",
+    "storage_bucket": "foot-pole.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:824635688634:android:bf62b9f7e3d6a4ec096483",
+        "android_client_info": {
+          "package_name": "com.meatyokragames.SixFootPole"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "824635688634-f57pbfr3mk8irf4ljhg5i0uh0si9df4k.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCYQ0Et1qqx3NKGByP_o9x0mLVRFg6P1yo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "824635688634-f57pbfr3mk8irf4ljhg5i0uh0si9df4k.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "824635688634-gi892cqb7vihllnrhgrs7pj1u1eo602b.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.meatyokragames.6-foot-pole"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
