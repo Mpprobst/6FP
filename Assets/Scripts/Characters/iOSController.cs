@@ -95,7 +95,6 @@ public class iOSController : PlayerController
         }
         else if (!tutOverride)
         {
-            Debug.Log("making input 0");
             inputVal = 0;
         }
 
