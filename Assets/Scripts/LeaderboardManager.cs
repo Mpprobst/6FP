@@ -1,5 +1,6 @@
 ﻿using Firebase;
 using Firebase.Database;
+using Firebase.Auth;
 using Firebase.Unity.Editor;
 using System.Collections;
 using System.Collections.Generic;
@@ -7,9 +8,11 @@ using UnityEngine;
 
 public class LeaderboardManager : MonoBehaviour
 {
-    private DatabaseReference dbReference; 
+    private DatabaseReference dbReference;
+    private FirebaseUser user;
+    private FirebaseAuth auth;
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         FirebaseApp.DefaultInstance.SetEditorDatabaseUrl("https://foot-pole.firebaseio.com/");
         // For secure login
@@ -19,6 +22,10 @@ public class LeaderboardManager : MonoBehaviour
 
         // Get the root reference location of the database.
         dbReference = FirebaseDatabase.DefaultInstance.RootReference;
+        auth = auth = Firebase.Auth.FirebaseAuth.DefaultInstance;
+        user = auth.CurrentUser;
+        ScoreManager scoreManager = GameObject.FindObjectOfType<ScoreManager>();
+        WriteNewScore(user.UserId, scoreManager.totalPoints);
     }
 
     // Update is called once per frame
@@ -32,13 +39,14 @@ public class LeaderboardManager : MonoBehaviour
         // Create new entry at /user-scores/$userid/$scoreid and at
         // /leaderboard/$scoreid simultaneously
         string key = dbReference.Child("scores").Push().Key;
+        Debug.Log("key is "+key);
         LeaderboardEntry entry = new LeaderboardEntry(userId, score);        
         Dictionary<string, object> entryValues = entry.ToDictionary();
 
         Dictionary<string, object> childUpdates = new Dictionary<string, object>();
         childUpdates["/scores/" + key] = entryValues;
         childUpdates["/user-scores/" + userId + "/" + key] = entryValues;
-
+        Debug.Log("didnt fail yet!");
         dbReference.UpdateChildrenAsync(childUpdates);
     }
 }
